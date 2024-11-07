@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  try{
   // Collect table data
   const tableRows = document.querySelectorAll("table tbody tr");
   const tableData = [];
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to create accordion
   function createAccordion(data) {
+    try{
     const bottomSection = document.querySelector(".bottom-data-section");
     bottomSection.style.marginLeft = "105px";
     if (!bottomSection) {
@@ -56,6 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
       accordionItem.appendChild(body);
       bottomSection.appendChild(accordionItem);
     });
+  }catch (error) {
+    console.error("Error creating accordion:", error);
+  }
   }
 
   // Initial load
@@ -63,6 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to apply filters
   function applyFilters() {
+    try{
+      
     const columnFilterInput = document.querySelector(
       'input[placeholder="Table filed names with comma seperate"]'
     );
@@ -102,6 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     createAccordion(filteredData);
+  }catch (error) {
+    console.error("Error applying filters:", error);
+  }
+
   }
 
   // Attach event listeners to input fields
@@ -180,5 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update the accordion with new data (which includes age)
     createAccordion(updatedData);
+  }
+}catch (error) {
+    console.error("Error initializing DOMContentLoaded:", error);
   }
 });
